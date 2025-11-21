@@ -1,3 +1,33 @@
+:root {
+  --primaryColor: #ffc62e;
+}
 body {
   font-family: monospace;
+}
+.grid {
+  display: grid;
+}
+.flex {
+  display: flex;
+}
+#main_container {
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 5vw;
+}
+.book {
+  padding: 10%;
+  border-radius: 15px;
+  background-color: var(--primaryColor);
+  flex-direction: column;
+}
+.title,
+.author {
+  margin: 0;
+}
+.title {
+  font-size: x-large;
+}
+.author {
+  font-size: large;
 }
