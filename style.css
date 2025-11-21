@@ -1,8 +1,15 @@
 :root {
   --primaryColor: #ffc62e;
+  --secondaryColor: #ffeb8c;
 }
 body {
+  flex-direction: column;
+  padding: 15px;
+  gap: 5vw;
   font-family: monospace;
+}
+h1 {
+  margin: 0;
 }
 .grid {
   display: grid;
@@ -20,6 +27,64 @@ body {
   border-radius: 15px;
   background-color: var(--primaryColor);
   flex-direction: column;
+}
+button {
+  font-family: monospace;
+  background-color: var(--primaryColor);
+  border-radius: 30px;
+  padding: 20px;
+  border: 0;
+}
+#open_dialog {
+  font-size: larger;
+}
+.buttons {
+  justify-content: space-between;
+  align-items: center;
+}
+.buttons button {
+  width: 45%;
+  font-size: medium;
+}
+#cancel {
+  background-color: lightgray;
+}
+#cancel:hover {
+  background-color: rgb(235, 235, 235);
+}
+button:hover {
+  background-color: var(--secondaryColor);
+}
+dialog {
+  border: 0;
+  width: 50vw;
+  border-radius: 20px;
+}
+form {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+input {
+  padding: 10px;
+  font-family: monospace;
+  border-radius: 10px;
+}
+input::placeholder {
+  font-style: italic;
+}
+input:focus {
+  outline: none;
+  border: 3px solid var(--secondaryColor);
+}
+input:valid {
+  outline: none;
+  border: 3px solid lightgreen;
+}
+button:focus {
+  outline: none;
+  border: 2px solid black;
 }
 .title,
 .author {

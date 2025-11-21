@@ -6,10 +6,22 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="flex">
     <h1>Yoko's Library</h1>
     <div class="grid container" id="main_container"></div>
-
+    <button class="on_page" id="open_dialog">Add Book</button>
+    <dialog autofocus="">
+      <form method="dialog" action="">
+        <label for="title">What is the title of the book?</label>
+        <input required id="title" type="text" placeholder="title..." />
+        <label for="author">Who is the author of the book?</label>
+        <input required id="author" type="text" placeholder="author..." />
+        <div class="flex buttons">
+          <button type="submit" id="add_book">Add</button>
+          <button type="reset" id="cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
     <script src="script.js"></script>
   </body>
 </html>
