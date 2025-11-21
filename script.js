@@ -3,7 +3,6 @@ let container = document.querySelector("#main_container");
 let dialog = document.querySelector("dialog");
 let title = document.querySelector("#title");
 let author = document.querySelector("#author");
-
 //constructor for books
 function book(title, author, status) {
   this.title = title;
@@ -21,6 +20,7 @@ function displayBooks(library) {
   while (container.lastChild) {
     container.removeChild(container.firstChild);
   }
+  let i = 0;
   library.forEach((book) => {
     let book_container = document.createElement("div");
     book_container.classList.add("container", "book", "flex");
@@ -35,15 +35,34 @@ function displayBooks(library) {
     author_box.classList.add("author");
     author_box.textContent = book.author;
 
+    //create remove button
+    let remove_btn = document.createElement("button");
+    remove_btn.textContent = "Remove";
+    remove_btn.classList.add("remove_btn");
+    remove_btn.setAttribute("data-parent", `${i}`);
+    remove_btn.addEventListener("click", (e) => {
+      let btn_idx = e.target.dataset.parent;
+      container.removeChild(
+        container.querySelector(`[data-index="${btn_idx}"]`)
+      );
+      myLibrary.splice(btn_idx, 1);
+      displayBooks(myLibrary);
+    });
+
     //add book elements to book container
+    book_container.setAttribute("data-index", i);
+    i++;
     book_container.appendChild(title_box);
     book_container.appendChild(author_box);
+    book_container.appendChild(remove_btn);
     container.appendChild(book_container);
   });
 }
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 4; i++) {
   addBook(new book(i, "author " + i, false), myLibrary);
 }
+
+displayBooks(myLibrary);
 let openBtn = document.querySelector("#open_dialog");
 openBtn.addEventListener("click", (e) => {
   dialog.showModal();
@@ -68,4 +87,3 @@ let cancelBtn = dialog.querySelector("#cancel");
 cancelBtn.addEventListener("click", (e) => {
   dialog.close();
 });
-displayBooks(myLibrary);
