@@ -42,7 +42,7 @@ function displayBooks(library) {
   });
 }
 for (let i = 0; i < 10; i++) {
-  addBook(new book("book", "author", false), myLibrary);
+  addBook(new book(i, "author " + i, false), myLibrary);
 }
 let openBtn = document.querySelector("#open_dialog");
 openBtn.addEventListener("click", (e) => {
@@ -52,7 +52,9 @@ openBtn.addEventListener("click", (e) => {
 let addBtn = dialog.querySelector("#add_book");
 addBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  addBook(new book(title.value, author.value, false), myLibrary);
+  if (title.value != "" && author.value != "") {
+    addBook(new book(title.value, author.value, false), myLibrary);
+  }
   dialog.close();
 });
 
@@ -67,4 +69,3 @@ cancelBtn.addEventListener("click", (e) => {
   dialog.close();
 });
 displayBooks(myLibrary);
-console.log(myLibrary[0].author);
