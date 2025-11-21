@@ -10,6 +10,10 @@ function book(title, author, status) {
   this.status = status;
   this.id = crypto.randomUUID;
 }
+book.prototype.changeStatus = function () {
+  console.log(this.status);
+  this.status = !this.status;
+};
 //add book function adds a book to the library and returns the library size
 function addBook(book, library) {
   library.push(book);
@@ -17,9 +21,11 @@ function addBook(book, library) {
 }
 //display books display all library books
 function displayBooks(library) {
+  //remove all DOM elements
   while (container.lastChild) {
     container.removeChild(container.firstChild);
   }
+  //add new DOM elements
   let i = 0;
   library.forEach((book) => {
     let book_container = document.createElement("div");
@@ -62,7 +68,7 @@ function displayBooks(library) {
     read_btn.setAttribute("data-parent", `${i}`);
     read_btn.addEventListener("click", (e) => {
       let btn_idx = e.target.dataset.parent;
-      myLibrary[btn_idx].status = !myLibrary[btn_idx].status;
+      myLibrary[btn_idx].changeStatus();
       displayBooks(myLibrary);
     });
 
@@ -80,7 +86,7 @@ function displayBooks(library) {
       displayBooks(myLibrary);
     });
 
-    //add book elements to book container
+    //add book elements to corresponding container
     book_container.setAttribute("data-index", i);
     i++;
     info_container.appendChild(title_box);
