@@ -24,6 +24,10 @@ function displayBooks(library) {
   library.forEach((book) => {
     let book_container = document.createElement("div");
     book_container.classList.add("container", "book", "flex");
+    let info_container = document.createElement("div");
+    info_container.classList.add("container", "info", "flex");
+    let up_section = document.createElement("div");
+    up_section.classList.add("container", "up_section", "flex");
 
     //create title
     let title_box = document.createElement("p");
@@ -34,6 +38,12 @@ function displayBooks(library) {
     let author_box = document.createElement("p");
     author_box.classList.add("author");
     author_box.textContent = book.author;
+
+    //create read button
+    let read_btn = document.createElement("button");
+    read_btn.textContent = "Read";
+    read_btn.classList.add("read_btn");
+    read_btn.setAttribute("data-parent", `${i}`);
 
     //create remove button
     let remove_btn = document.createElement("button");
@@ -52,8 +62,11 @@ function displayBooks(library) {
     //add book elements to book container
     book_container.setAttribute("data-index", i);
     i++;
-    book_container.appendChild(title_box);
-    book_container.appendChild(author_box);
+    info_container.appendChild(title_box);
+    info_container.appendChild(author_box);
+    up_section.appendChild(info_container);
+    up_section.appendChild(read_btn);
+    book_container.appendChild(up_section);
     book_container.appendChild(remove_btn);
     container.appendChild(book_container);
   });

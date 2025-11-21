@@ -22,8 +22,15 @@ h1 {
   grid-auto-rows: 1fr;
   gap: 5vw;
 }
+.info {
+  flex-direction: column;
+}
+.up_section {
+  justify-content: space-between;
+}
 .book {
   padding: 10%;
+  gap: 10px;
   border-radius: 15px;
   background-color: var(--primaryColor);
   flex-direction: column;
@@ -104,4 +111,10 @@ button:focus {
 }
 .remove_btn:hover {
   background-color: lightcoral;
+}
+.read_btn {
+  background-color: var(--secondaryColor);
+}
+.read_btn:hover {
+  background-color: lightyellow;
 }
