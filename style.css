@@ -24,8 +24,12 @@ h1 {
 }
 .info {
   flex-direction: column;
+  flex: 1;
+  overflow: auto;
+  gap: 10px;
 }
 .up_section {
+  gap: 10px;
   justify-content: space-between;
 }
 .book {
@@ -101,7 +105,7 @@ button:focus {
   font-size: x-large;
 }
 .author {
-  font-size: large;
+  font-size: medium;
 }
 .remove_btn {
   align-self: flex-end;
@@ -113,6 +117,7 @@ button:focus {
   background-color: lightcoral;
 }
 .read_btn {
+  width: 50%;
   background-color: var(--secondaryColor);
 }
 .read_btn:hover {

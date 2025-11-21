@@ -39,11 +39,32 @@ function displayBooks(library) {
     author_box.classList.add("author");
     author_box.textContent = book.author;
 
+    //create status
+    let status_box = document.createElement("p");
+    status_box.classList.add("status");
+    if (book.status) {
+      status_box.textContent = "Read";
+      status_box.setAttribute("style", "color: green");
+    } else {
+      status_box.textContent = "Not read yet";
+
+      status_box.setAttribute("style", "color: red");
+    }
+
     //create read button
     let read_btn = document.createElement("button");
-    read_btn.textContent = "Read";
+    if (book.status) {
+      read_btn.textContent = "Unread";
+    } else {
+      read_btn.textContent = "Read";
+    }
     read_btn.classList.add("read_btn");
     read_btn.setAttribute("data-parent", `${i}`);
+    read_btn.addEventListener("click", (e) => {
+      let btn_idx = e.target.dataset.parent;
+      myLibrary[btn_idx].status = !myLibrary[btn_idx].status;
+      displayBooks(myLibrary);
+    });
 
     //create remove button
     let remove_btn = document.createElement("button");
@@ -64,6 +85,7 @@ function displayBooks(library) {
     i++;
     info_container.appendChild(title_box);
     info_container.appendChild(author_box);
+    info_container.appendChild(status_box);
     up_section.appendChild(info_container);
     up_section.appendChild(read_btn);
     book_container.appendChild(up_section);
@@ -71,11 +93,7 @@ function displayBooks(library) {
     container.appendChild(book_container);
   });
 }
-for (let i = 0; i < 4; i++) {
-  addBook(new book(i, "author " + i, false), myLibrary);
-}
 
-displayBooks(myLibrary);
 let openBtn = document.querySelector("#open_dialog");
 openBtn.addEventListener("click", (e) => {
   dialog.showModal();
@@ -100,3 +118,10 @@ let cancelBtn = dialog.querySelector("#cancel");
 cancelBtn.addEventListener("click", (e) => {
   dialog.close();
 });
+
+//initialize page
+addBook(new book("Harry Potter", "J.K Rowling", false), myLibrary);
+addBook(new book("Animal Farm", "George Orwell", true), myLibrary);
+addBook(new book("A Theory of Justice", "John Rawls", false), myLibrary);
+
+displayBooks(myLibrary);
