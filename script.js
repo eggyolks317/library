@@ -4,11 +4,14 @@ let dialog = document.querySelector("dialog");
 let title = document.querySelector("#title");
 let author = document.querySelector("#author");
 //constructor for books
-function book(title, author, status) {
-  this.title = title;
-  this.author = author;
-  this.status = status;
-  this.id = crypto.randomUUID;
+
+class book {
+  constructor(title, author, status) {
+    this.title = title;
+    this.author = author;
+    this.status = status;
+    this.id = crypto.randomUUID;
+  }
 }
 book.prototype.changeStatus = function () {
   console.log(this.status);
